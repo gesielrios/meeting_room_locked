@@ -13,6 +13,7 @@ The project was developed with:
 
 ------------
 <h2>🔌 Getting started</h2>
+
 ### Requirements
 - Ruby 2.7
 - Rails 6
