@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MeetingRoomLocked</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <head lang="en">
+    <title>Meeting Room Locked App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,6 +11,24 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Meeting Room Locked App</a>
+        <div class="d-flex">
+          <% if current_user %>
+            <h5><%= current_user.email %></h5>
+            <span class="me-2 ms-2">|</span>
+            <%= link_to('Sign out',  destroy_user_session_path, :method => 'delete') %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>
+
+    
