@@ -1,23 +1,38 @@
-<div class="table-responsive">
-    <table class="table table-bordered table-striped">
-        <thead class="text-center">
+
+<table class="table table-bordered table-striped mt-5">
+    <thead class="text-center">
+        <tr>
+            <% headers.each do |header| %>
+                <th><%= header %></th>
+            <% end %>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        <% schedules.each do |schedule| %>
             <tr>
-                <% headers.each do |header| %>
-                    <th><%= header %></th>
-                <% end %>
-            </tr>
-        </thead>
-        <tbody class="text-center">
-            <% schedules.each do |schedule| %>
-                <tr>
-                    <td><%= schedule_format(schedule) %></td>
-                    <% 0.upto(headers.size-2) do |day_index| %>
+                <td><%= schedule_format(schedule) %></td>
+                <% 0.upto(headers.size-2) do |day_index| %>
+                    <% if lock = is_locked?(@lockeds, day_index, schedule) %>
                         <td>
-                            <a href="#">Available</a>
+                            <% if lock.user == current_user %>
+                                <a href="/toggle_register"
+                                    class="locked-link"
+                                    id="<%= day_index.to_s + "_" + schedule.to_s %>">Delete</a>
+                            <% end %>
+                            <span>Locked for <%= lock.user.email %></span>
+                        </td>
+                    <% else %>
+                        <td>
+                            <a href="/toggle_register"
+                                id="<%= day_index.to_s + "_" + schedule.to_s %>"
+                                class="locked-link">Available
+                            </a>
+                            <span></span>
                         </td>
                     <% end %>
-                </tr>
-            <% end %>   
-        </tbody>
-    </table>
-</div>
+                <% end %>
+            </tr>
+        <% end %>   
+    </tbody>
+</table>
+

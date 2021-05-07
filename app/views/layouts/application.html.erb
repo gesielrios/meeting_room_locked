@@ -2,30 +2,42 @@
 <html>
   <head lang="en">
     <title>Meeting Room Locked App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">Meeting Room Locked App</a>
-        <div class="d-flex">
-          <% if current_user %>
-            <h5><%= current_user.email %></h5>
-            <span class="me-2 ms-2">|</span>
-            <%= link_to('Sign out',  destroy_user_session_path, :method => 'delete') %>
-          <% end %>
+    <header>
+      <nav class="navbar fixed-top navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Meeting Room Locked App</a>
+          <div class="d-flex">
+            <% if current_user %>
+              <h5><%= current_user.email %></h5>
+              <span class="me-2 ms-2">|</span>
+              <%= link_to('Sign out',  destroy_user_session_path, :method => 'delete') %>
+            <% end %>
+          </div>
         </div>
+      </nav>
+    </header>
+    <div class="container" style="margin-top: 120px;">
+      <% if notice %>
+      <div class="alert alert-success alert-dismissible fade show m-5" role="alert">
+        <%= notice %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-    </nav>
-    <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger alert-dismissible fade show m-5" role="alert">
+          <%= alert %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
   </body>

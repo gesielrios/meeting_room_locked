@@ -14,4 +14,13 @@ module SchedulerHelper
         end
         return "#{schedule}:00"
     end
+
+    def is_locked?(lockeds, day_index, time_start)
+        lockeds.find do |lock|
+          if lock.day_index == day_index && lock.time_start == time_start
+            return lock
+          end
+        end
+        return nil
+      end
 end

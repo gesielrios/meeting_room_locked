@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   
   root 'scheduler#index'
   
+  get '/toggle_register' => 'scheduler#toggle_register'
 end

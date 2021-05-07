@@ -8,8 +8,12 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-import '../stylesheets/application'
-import 'bootstrap/dist/js/bootstrap'
+require('popper.js');
+require("bootstrap")
+
+import '@popperjs/core';
+import "../stylesheets/application";
+import "../scheduler"
 
 Rails.start()
 Turbolinks.start()
