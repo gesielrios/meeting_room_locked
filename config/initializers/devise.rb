@@ -244,7 +244,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = false
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
@@ -272,10 +272,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  GITHUB_APP_ID = Rails.application.credentials.dig(:github_app_id)
-  GITHUB_SECRET_ID = Rails.application.credentials.dig(:github_secret_id)
+  GITHUB_CLIENT_ID = Rails.application.credentials.dig(:github_client_id)
+  GITHUB_CLIENT_SECRET = Rails.application.credentials.dig(:github_client_secret)
 
-  config.omniauth :github, GITHUB_APP_ID, GITHUB_SECRET_ID, scope: 'user'
+  config.omniauth :github, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, scope: 'user'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
